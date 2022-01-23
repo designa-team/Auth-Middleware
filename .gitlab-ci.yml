@@ -16,9 +16,6 @@ workflow:
   rules:
     - if: $CI_COMMIT_BRANCH
 
-variables:
-  NPM_TOKEN: ${CI_JOB_TOKEN}
-
 stages:
   - release
 
