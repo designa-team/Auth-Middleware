@@ -21,12 +21,23 @@ variables:
 
 stages:
   - release
+  - test
+
+test:
+  stage: test
+  tags:
+    - build
+  script:
+    - npm run test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 publish:
   stage: release
   tags:
     - build
   script:
+    - npm run build
     - npm run semantic-release
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
