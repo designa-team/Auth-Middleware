@@ -1,4 +1,4 @@
-var authMiddleware = require('./index.js');
+var authMiddleware = require('./lib/index.js');
 var assert = require('assert');
 var express = require('express');
 var superagent = require('superagent');
