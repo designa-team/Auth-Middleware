@@ -1,14 +1,15 @@
-var authMiddleware = require('./lib/index.js');
-var assert = require('assert');
-var express = require('express');
-var superagent = require('superagent');
-var jsonwebtoken = require('jsonwebtoken');
+import authMiddleware from './index';
+import { expect } from 'chai';
+import express from 'express';
+import * as superagent from 'superagent'
+import { sign } from 'jsonwebtoken'
+import { Server } from 'http'
 
 describe('express integration', function() {
-    var app;
-    var server;
+    let app;
+    let server: Server;
     process.env.JWT_SECRET = 'Testaringo.2022';
-    var token = jsonwebtoken.sign({
+    var token = sign({
         email: 'test@email.com'
         , name: 'Don TEst'
         , phone: '5252525252'
@@ -33,7 +34,7 @@ describe('express integration', function() {
         superagent.get('http://localhost:8080/test')
         .set({'Authorization': `Bearer ${token}`})
         .send().end((err,res)=>{
-            assert.equal(res.statusCode, 200)
+            expect(res.statusCode).to.equal(200);
             done();
         });
     });
@@ -42,7 +43,7 @@ describe('express integration', function() {
         superagent.get('http://localhost:8080/test')
         .set({'Authorization': `Bearer 123123`})
         .send().end((err,res)=>{
-            assert.equal(res.statusCode, 403)
+            expect(res.statusCode).to.equal(403);
             done();
         });
     });

@@ -1,5 +1,5 @@
 import { verify } from 'jsonwebtoken'
-import { Request, Response, NextFunction } from 'express'
+import type { RequestHandler } from 'express'
 
 export class SessionUser {
     constructor(public user?: string) {
@@ -13,19 +13,19 @@ export class SessionUser {
 declare global {
     namespace Express {
       interface Request {
-        user: SessionUser
+        user?: SessionUser
       }
     }
   }
 
-const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+const authMiddleware: RequestHandler = (req, res, next) => {
     req.user = new SessionUser();
     if (req.headers
         && req.headers.authorization
         && req.headers.authorization.startsWith("Bearer ")
         && process.env.JWT_SECRET) {
         const token = req.headers.authorization.slice(7, req.headers.authorization.length);
-        verify(token, process.env.JWT_SECRET, function (err, decode) {
+        verify(token, process.env.JWT_SECRET, function (err: unknown, decode: unknown) {
             if (!err) {
               req.user = new SessionUser(JSON.stringify(decode));
               next();
@@ -38,4 +38,4 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-module.exports = authMiddleware;
+export default authMiddleware;
