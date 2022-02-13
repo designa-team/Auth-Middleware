@@ -13,7 +13,7 @@ export class SessionUser {
 declare global {
     namespace Express {
       interface Request {
-        user?: SessionUser
+        user?: any
       }
     }
   }
