@@ -9,7 +9,7 @@ export class SessionUser {
         return this.user ? JSON.parse(this.user) : undefined;
     }
   }
-
+// user is specific to the application
 declare global {
     namespace Express {
       interface Request {
