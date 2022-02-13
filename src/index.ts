@@ -27,7 +27,7 @@ const authMiddleware: RequestHandler = (req, res, next) => {
         const token = req.headers.authorization.slice(7, req.headers.authorization.length);
         verify(token, process.env.JWT_SECRET, function (err: unknown, decode: unknown) {
             if (!err) {
-              req.user = new SessionUser(JSON.stringify(decode));
+              req.user = new SessionUser(JSON.stringify(decode)).get();
               next();
             } else {
                 res.status(403).json({ message: "unauthorized" });

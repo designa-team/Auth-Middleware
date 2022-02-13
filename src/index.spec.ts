@@ -21,7 +21,7 @@ describe('express integration', function() {
     beforeEach(function() {
         app = express();
         app.get('/test', authMiddleware, function(req, res){
-            res.status(200).json({'ok':'ok'});
+            res.status(200).json(req.user);
         });
         server = app.listen(8080);
     });
@@ -35,6 +35,16 @@ describe('express integration', function() {
         .set({'Authorization': `Bearer ${token}`})
         .send().end((err,res)=>{
             expect(res.statusCode).to.equal(200);
+            done();
+        });
+    });
+
+    it('should get user data', function (done) {
+        superagent.get('http://localhost:8080/test')
+        .set({'Authorization': `Bearer ${token}`})
+        .send().end((err,res)=>{
+            expect(res.statusCode).to.equal(200);
+            expect(res.body._id).to.equal('ababababa');
             done();
         });
     });
