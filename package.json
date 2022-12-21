@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/gitlab": "^7.0.4",
+    "@semantic-release/gitlab": "^9.5.1",
     "@semantic-release/npm": "^9.0.0",
     "@types/chai": "^4.3.0",
     "@types/express": "^4.17.13",
