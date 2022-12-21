@@ -14,3 +14,5 @@ create a file `.npmrc` and append this
 ```
 
 then to install `npm install --save @designa/auth-middleware`
+
+CREATING version 2
