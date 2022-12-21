@@ -30,11 +30,11 @@ const authMiddleware: RequestHandler = (req, res, next) => {
               req.user = new SessionUser(JSON.stringify(decode)).get();
               next();
             } else {
-                res.status(403).json({ message: "unauthorized" });
+                res.status(407).json({ message: "unauthorized" });
             }
         });
     } else {
-        res.status(403).json({ message: "unauthorized" });
+        res.status(407).json({ message: "unauthorized" });
     }
 }
 
