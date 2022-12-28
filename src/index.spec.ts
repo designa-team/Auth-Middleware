@@ -53,7 +53,7 @@ describe('express integration', function() {
         superagent.get('http://localhost:8080/test')
         .set({'Authorization': `Bearer 123123`})
         .send().end((err,res)=>{
-            expect(res.statusCode).to.equal(407);
+            expect(res.statusCode).to.equal(401);
             done();
         });
     });
