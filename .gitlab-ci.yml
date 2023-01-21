@@ -32,6 +32,15 @@ test:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
+audit:
+  stage: test
+  tags:
+    - build
+  script:
+    - npm audit
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
 publish:
   stage: release
   tags:
