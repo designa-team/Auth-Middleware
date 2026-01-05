@@ -1,6 +1,6 @@
 {
     "branches": ["main"],
-    "repositoryUrl": "https://github.com/designa-team/Auth-Middleware.git",
+    "repositoryUrl": "https://github.com/designa-team/Auth-Middleware",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
