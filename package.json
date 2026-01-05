@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:designa-team/Auth-Middleware.git"
+    "url": "git+ssh://git@github.com/designa-team/Auth-Middleware.git"
   },
   "author": "ulises.medrano@designamx.com",
   "license": "ISC",
